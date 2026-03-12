@@ -1,55 +1,47 @@
 import { motion } from "framer-motion"
 
-const portfolioItems = [
-  "/portfolio-website-design-preview-modern.jpg",
-  "/photography-portfolio-website-clean.jpg",
-  "/architecture-firm-website-minimal.jpg",
-  "/design-agency-portfolio-dark-theme.jpg",
-  "/artist-portfolio-website-creative.jpg",
-  "/writer-portfolio-website-elegant.jpg",
+const items = [
+  "🍽️ Завтрак",
+  "🎨 Рисование",
+  "🎵 Музыка",
+  "🌳 Прогулка",
+  "😴 Тихий час",
+  "🧼 Умывание",
+  "🏃 Физкультура",
+  "📖 Чтение",
+  "🧩 Игра",
+  "🎭 Театр",
+  "🌈 Танцы",
+  "🍎 Полдник",
+  "✂️ Аппликация",
+  "🎲 Настольные игры",
+  "🧸 Свободная игра",
 ]
 
 export function CarouselSection() {
-  // Duplicate for seamless loop
-  const items = [...portfolioItems, ...portfolioItems]
+  const doubled = [...items, ...items]
 
   return (
-    <section className="bg-primary py-24 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-12">
-        <motion.h2
-          className="text-3xl md:text-4xl font-serif text-primary-foreground"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Создано авторами для авторов.
-        </motion.h2>
+    <section id="adaptation" className="py-20 overflow-hidden bg-[hsl(200,80%,45%)]">
+      <div className="mb-8 text-center">
+        <p className="text-sm font-bold uppercase tracking-widest text-white/70 mb-2">🌟 Режимные моменты</p>
+        <h2 className="text-3xl md:text-4xl font-display text-white">
+          Весь день по карточкам!
+        </h2>
       </div>
 
       <div className="relative">
-        <motion.div
-          className="flex gap-6"
-          animate={{ x: [0, "-50%"] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
-          {items.map((src, i) => (
-            <div
+        <div className="flex animate-marquee whitespace-nowrap gap-4 py-4">
+          {doubled.map((item, i) => (
+            <motion.div
               key={i}
-              className="flex-shrink-0 w-[300px] md:w-[400px] rounded-xl overflow-hidden shadow-2xl"
-              data-clickable
+              className="flex-shrink-0 px-6 py-4 rounded-2xl bg-white/20 border border-white/30 text-white font-bold text-lg"
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.35)" }}
             >
-              <img
-                src={src || "/placeholder.svg"}
-                alt={`Пример портфолио ${(i % portfolioItems.length) + 1}`}
-                className="w-full h-auto"
-              />
-            </div>
+              {item}
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

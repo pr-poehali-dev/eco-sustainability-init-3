@@ -1,154 +1,107 @@
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-function TypeTester() {
-  const [scale, setScale] = useState(1)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setScale((prev) => (prev === 1 ? 1.5 : 1))
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex items-center justify-center h-full">
-      <motion.span
-        className="font-serif text-6xl md:text-8xl text-foreground"
-        animate={{ scale }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        Aa
-      </motion.span>
-    </div>
-  )
-}
-
-function LayoutAnimation() {
-  const [layout, setLayout] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLayout((prev) => (prev + 1) % 3)
-    }, 2500)
-    return () => clearInterval(interval)
-  }, [])
-
-  const layouts = ["grid-cols-2 grid-rows-2", "grid-cols-3 grid-rows-1", "grid-cols-1 grid-rows-3"]
-
-  return (
-    <div className="h-full p-4 flex items-center justify-center">
-      <motion.div className={`grid ${layouts[layout]} gap-2 w-full max-w-[140px]`} layout>
-        {[1, 2, 3].map((i) => (
-          <motion.div
-            key={i}
-            className="bg-primary/20 rounded-md min-h-[30px]"
-            layout
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          />
-        ))}
-      </motion.div>
-    </div>
-  )
-}
-
-function SpeedIndicator() {
-  const [progress, setProgress] = useState(0)
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setProgress(100), 500)
-    return () => clearTimeout(timeout)
-  }, [])
-
-  return (
-    <div className="flex flex-col items-center justify-center h-full gap-4">
-      <span className="text-3xl md:text-4xl font-sans font-medium text-foreground">100ms</span>
-      <span className="text-sm text-muted-foreground">Загрузка</span>
-      <div className="w-full max-w-[120px] h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-primary rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.1 }}
-        />
-      </div>
-    </div>
-  )
-}
+const features = [
+  {
+    emoji: "🕐",
+    title: "Режимные моменты",
+    description:
+      "Карточки АДК помогают детям понимать, что происходит прямо сейчас: завтрак, прогулка, тихий час, умывание. Ребёнок знает, чего ожидать — и это снижает тревогу.",
+    color: "hsl(200, 80%, 45%)",
+    bg: "hsl(200, 80%, 95%)",
+  },
+  {
+    emoji: "📚",
+    title: "Расписание занятий",
+    description:
+      "Визуальное расписание на день помогает ребёнку ориентироваться в структуре дня. Он видит: сначала рисование, потом музыка, потом прогулка.",
+    color: "hsl(30, 100%, 55%)",
+    bg: "hsl(30, 100%, 95%)",
+  },
+  {
+    emoji: "🌱",
+    title: "Адаптация без стресса",
+    description:
+      "Знакомые символы из дома помогают ребёнку чувствовать себя в безопасности. Когда слова непонятны — картинки всегда на помощь.",
+    color: "hsl(120, 50%, 40%)",
+    bg: "hsl(120, 50%, 94%)",
+  },
+  {
+    emoji: "🤝",
+    title: "Мост между домом и садом",
+    description:
+      "Воспитатели и родители используют одинаковые карточки. Это создаёт единое пространство понимания для ребёнка дома и в саду.",
+    color: "hsl(280, 60%, 50%)",
+    bg: "hsl(280, 60%, 95%)",
+  },
+  {
+    emoji: "💬",
+    title: "Общение без барьеров",
+    description:
+      "Карточки помогают ребёнку выразить желание, просьбу, чувство — даже если он ещё не говорит уверенно на русском языке.",
+    color: "hsl(340, 80%, 55%)",
+    bg: "hsl(340, 80%, 96%)",
+  },
+  {
+    emoji: "⭐",
+    title: "Уверенность и радость",
+    description:
+      "Когда ребёнок понимает и его понимают — он счастлив. АДК помогает детям активно участвовать в жизни группы и заводить друзей.",
+    color: "hsl(45, 100%, 45%)",
+    bg: "hsl(45, 100%, 95%)",
+  },
+]
 
 export function FeaturesSection() {
   return (
-    <section className="bg-background px-6 py-24">
+    <section className="py-24 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <motion.p
-          className="text-muted-foreground text-sm uppercase tracking-widest mb-8"
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          Возможности
-        </motion.p>
+          <p className="text-sm font-bold uppercase tracking-widest text-[hsl(200,80%,45%)] mb-3">
+            🎯 Как это работает
+          </p>
+          <h2 className="text-4xl md:text-5xl font-display text-foreground">
+            АДК в детском саду
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto font-semibold">
+            Шесть ключевых направлений, которые делают пребывание ребёнка в саду комфортным и радостным
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Typography Card */}
-          <motion.div
-            className="bg-secondary rounded-xl p-8 min-h-[280px] flex flex-col"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 0.98 }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ duration: 0.2 }}
-            data-clickable
-          >
-            <div className="flex-1">
-              <TypeTester />
-            </div>
-            <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Типографика</h3>
-              <p className="text-muted-foreground text-sm mt-1">Красивые шрифты, которые идеально масштабируются.</p>
-            </div>
-          </motion.div>
-
-          {/* Layouts Card */}
-          <motion.div
-            className="bg-secondary rounded-xl p-8 min-h-[280px] flex flex-col"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ scale: 0.98 }}
-            whileTap={{ scale: 0.96 }}
-            data-clickable
-          >
-            <div className="flex-1">
-              <LayoutAnimation />
-            </div>
-            <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Макеты</h3>
-              <p className="text-muted-foreground text-sm mt-1">Гибкие сетки, которые адаптируются под контент.</p>
-            </div>
-          </motion.div>
-
-          {/* Speed Card */}
-          <motion.div
-            className="bg-secondary rounded-xl p-8 min-h-[280px] flex flex-col"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            whileHover={{ scale: 0.98 }}
-            whileTap={{ scale: 0.96 }}
-            data-clickable
-          >
-            <div className="flex-1">
-              <SpeedIndicator />
-            </div>
-            <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Скорость</h3>
-              <p className="text-muted-foreground text-sm mt-1">Молниеносная загрузка страниц для ваших гостей.</p>
-            </div>
-          </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              className="group relative p-7 rounded-3xl border-2 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden"
+              style={{ backgroundColor: feature.bg, borderColor: feature.color + "33" }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+            >
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 shadow-sm"
+                style={{ backgroundColor: feature.color + "22", border: `2px solid ${feature.color}44` }}
+              >
+                {feature.emoji}
+              </div>
+              <h3
+                className="text-xl font-display mb-3"
+                style={{ color: feature.color }}
+              >
+                {feature.title}
+              </h3>
+              <p className="text-sm text-foreground/80 leading-relaxed font-semibold">
+                {feature.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

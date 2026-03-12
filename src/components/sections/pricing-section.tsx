@@ -1,85 +1,159 @@
 import { motion } from "framer-motion"
-import { Check } from "lucide-react"
 
-const plans = [
+const downloadSets = [
   {
-    name: "Старт",
-    price: "1 200",
-    period: " руб/мес",
-    description: "Для личного портфолио",
-    features: ["5 страниц", "Свой домен", "Базовая аналитика", "Поддержка по email"],
+    emoji: "🕐",
+    title: "Режимные моменты",
+    desc: "Карточки для всех режимных событий дня: завтрак, прогулка, сон, умывание и другие",
+    items: ["Завтрак / Обед / Полдник / Ужин", "Прогулка на улице", "Тихий час", "Умывание руки", "Туалет", "Одевание / Раздевание"],
+    color: "hsl(200,80%,45%)",
+    bg: "hsl(200,80%,96%)",
+    badge: "12 карточек",
+    highlight: false,
   },
   {
-    name: "Про",
-    price: "2 900",
-    period: " руб/мес",
-    description: "Для растущих авторов",
-    features: ["Безлимит страниц", "Приоритет поддержки", "Расширенная аналитика", "Свой брендинг", "Работа в команде"],
-    popular: true,
+    emoji: "📅",
+    title: "Расписание занятий",
+    desc: "Карточки для всех видов занятий в детском саду — для составления визуального расписания дня",
+    items: ["Рисование и аппликация", "Музыка и танцы", "Физкультура", "Развитие речи", "Математика", "Окружающий мир"],
+    color: "hsl(30,100%,55%)",
+    bg: "hsl(30,100%,96%)",
+    badge: "10 карточек",
+    highlight: true,
+  },
+  {
+    emoji: "💬",
+    title: "Чувства и эмоции",
+    desc: "Карточки для выражения базовых эмоций и состояний — помогают ребёнку рассказать о себе",
+    items: ["Радость / Грусть", "Страх / Тревога", "Голод / Жажда", "Больно / Нехорошо", "Хочу домой", "Хочу играть"],
+    color: "hsl(340,80%,55%)",
+    bg: "hsl(340,80%,96%)",
+    badge: "8 карточек",
+    highlight: false,
   },
 ]
 
 export function PricingSection() {
   return (
-    <section className="bg-secondary px-6 py-24">
-      <div className="max-w-5xl mx-auto">
+    <section id="download" className="py-24 px-6 bg-[hsl(40,60%,97%)]">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground">Простые и понятные цены</h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto">Начните бесплатно, платите когда готовы.</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-[hsl(200,80%,45%)] mb-3">
+            ⬇️ Скачать карточки
+          </p>
+          <h2 className="text-4xl md:text-5xl font-display text-foreground">
+            Наборы карточек АДК
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto font-semibold">
+            Все карточки бесплатны. Распечатайте, заламинируйте и используйте дома и в саду
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {plans.map((plan, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {downloadSets.map((set, i) => (
             <motion.div
-              key={i}
-              className={`relative bg-background rounded-xl p-8 ticket-edge ${plan.popular ? "ring-2 ring-primary" : ""}`}
-              initial={{ opacity: 0, y: 30 }}
+              key={set.title}
+              className="relative flex flex-col rounded-3xl border-2 overflow-hidden"
+              style={{
+                backgroundColor: set.highlight ? set.color : set.bg,
+                borderColor: set.highlight ? set.color : set.color + "44",
+              }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              data-clickable
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -4 }}
             >
-              {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-lime text-foreground text-xs font-medium px-3 py-1 rounded-full">
-                  Популярный
-                </span>
+              {set.highlight && (
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white text-xs font-bold" style={{ color: set.color }}>
+                  ⭐ Популярный
+                </div>
               )}
 
-              <div className="text-center pb-6 border-b border-dashed border-border">
-                <h3 className="font-serif text-xl text-foreground">{plan.name}</h3>
-                <div className="mt-4 flex items-baseline justify-center gap-1">
-                  <span className="text-4xl md:text-5xl font-serif text-foreground">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
+              <div className="p-8 flex-1">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5 shadow-sm"
+                  style={{
+                    backgroundColor: set.highlight ? "rgba(255,255,255,0.25)" : set.color + "22",
+                    border: `2px solid ${set.highlight ? "rgba(255,255,255,0.4)" : set.color + "44"}`,
+                  }}
+                >
+                  {set.emoji}
                 </div>
-                <p className="text-muted-foreground text-sm mt-2">{plan.description}</p>
+
+                <h3
+                  className="text-2xl font-display mb-2"
+                  style={{ color: set.highlight ? "white" : set.color }}
+                >
+                  {set.title}
+                </h3>
+                <span
+                  className="inline-block text-xs font-bold px-3 py-1 rounded-full mb-4"
+                  style={{
+                    backgroundColor: set.highlight ? "rgba(255,255,255,0.25)" : set.color + "22",
+                    color: set.highlight ? "white" : set.color,
+                  }}
+                >
+                  {set.badge}
+                </span>
+                <p
+                  className="text-sm font-semibold leading-relaxed mb-6"
+                  style={{ color: set.highlight ? "rgba(255,255,255,0.9)" : "hsl(220,40%,30%)" }}
+                >
+                  {set.desc}
+                </p>
+
+                <ul className="space-y-2">
+                  {set.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2 text-sm font-semibold"
+                      style={{ color: set.highlight ? "rgba(255,255,255,0.85)" : "hsl(220,40%,30%)" }}
+                    >
+                      <span
+                        className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-xs"
+                        style={{ backgroundColor: set.highlight ? "rgba(255,255,255,0.3)" : set.color + "33" }}
+                      >
+                        ✓
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <ul className="mt-6 space-y-3">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-center gap-3 text-foreground">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={`w-full mt-8 py-3 px-6 rounded-lg font-medium transition-colors ${
-                  plan.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-secondary text-foreground hover:bg-accent/30"
-                }`}
-              >
-                Начать
-              </button>
+              <div className="p-6 pt-0">
+                <button
+                  className="w-full py-3 rounded-2xl font-bold text-base transition-all duration-200 hover:scale-105 active:scale-95 shadow-md"
+                  style={{
+                    backgroundColor: set.highlight ? "white" : set.color,
+                    color: set.highlight ? set.color : "white",
+                  }}
+                >
+                  ⬇️ Скачать бесплатно
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="mt-10 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <p className="text-muted-foreground font-semibold">
+            🖨️ Рекомендуем распечатать на плотной бумаге и заламинировать карточки для долгого использования
+          </p>
+        </motion.div>
       </div>
     </section>
   )

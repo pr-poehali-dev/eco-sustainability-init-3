@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    /* Folio Lilac & Ink Theme */
-    --background: 270 20% 99%;
-    --foreground: 270 63% 6%;
-    --surface: 270 20% 96%;
-    --ink: 270 63% 6%;
-    --iris: 263 70% 42%;
-    --lilac: 270 89% 85%;
-    --lime: 82 85% 80%;
-    --muted-foreground: 270 8% 43%;
+    /* Детский сад — тёплые, яркие, радостные цвета */
+    --background: 40 100% 99%;
+    --foreground: 220 40% 18%;
+    --surface: 40 60% 96%;
+    --ink: 220 40% 18%;
+    --iris: 200 80% 45%;
+    --lilac: 280 70% 80%;
+    --lime: 120 60% 75%;
+    --muted-foreground: 220 15% 50%;
 
-    --card: 270 20% 96%;
-    --card-foreground: 270 63% 6%;
-    --popover: 270 20% 99%;
-    --popover-foreground: 270 63% 6%;
-    --primary: 263 70% 42%;
-    --primary-foreground: 270 20% 99%;
-    --secondary: 270 20% 96%;
-    --secondary-foreground: 270 63% 6%;
-    --muted: 270 20% 96%;
-    --accent: 270 89% 85%;
-    --accent-foreground: 270 63% 6%;
+    --card: 40 60% 97%;
+    --card-foreground: 220 40% 18%;
+    --popover: 40 100% 99%;
+    --popover-foreground: 220 40% 18%;
+    --primary: 200 80% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 60% 96%;
+    --secondary-foreground: 220 40% 18%;
+    --muted: 40 40% 95%;
+    --accent: 30 100% 70%;
+    --accent-foreground: 220 40% 18%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 270 15% 92%;
-    --input: 270 15% 92%;
-    --ring: 263 70% 42%;
+    --border: 40 30% 88%;
+    --input: 40 30% 88%;
+    --ring: 200 80% 45%;
 
     --radius: 0.75rem;
 
@@ -83,7 +83,14 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "Nunito", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Fredoka One", cursive;
+    letter-spacing: 0.02em;
   }
 }
 
@@ -94,7 +101,8 @@
 
 /* Serrated ticket edge */
 .ticket-edge {
-  mask-image: radial-gradient(circle at 0 50%, transparent 8px, black 8px),
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent 8px, black 8px),
     radial-gradient(circle at 100% 50%, transparent 8px, black 8px);
   mask-size: 51% 100%;
   mask-position: left, right;

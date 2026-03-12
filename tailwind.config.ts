@@ -19,8 +19,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
-				serif: ['Playfair Display', 'Georgia', 'serif'],
+				sans: ['Nunito', 'system-ui', 'sans-serif'],
+				serif: ['Fredoka One', 'cursive'],
+				display: ['Fredoka One', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
