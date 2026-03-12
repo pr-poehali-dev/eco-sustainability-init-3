@@ -73,7 +73,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          🌈 Детский сад · АДК для каждого ребёнка
+          🌈 МБДОУ ДС №47 «Успех» · АДК для каждого ребёнка
         </motion.p>
         <motion.h1
           className="text-5xl md:text-7xl lg:text-8xl font-display leading-tight text-foreground"

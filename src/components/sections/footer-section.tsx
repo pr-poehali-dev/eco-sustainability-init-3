@@ -32,7 +32,7 @@ export function FooterSection() {
         >
           <div className="text-5xl mb-4">🌈</div>
           <h2 className="text-3xl md:text-4xl font-display mb-4">
-            АДК в нашем детском саду
+            МБДОУ ДС №47 «Успех»
           </h2>
           <p className="text-background/70 font-semibold max-w-xl mx-auto leading-relaxed">
             Вместе мы создаём пространство, где каждый ребёнок чувствует себя понятым, 

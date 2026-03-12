@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "POST survey",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "child_name": "Иван Иванов",
+        "parent_name": "Мария Иванова",
+        "group_name": "Солнышко",
+        "strengths": "Хорошо понимает картинки, любит рисовать",
+        "barriers": "Языковой барьер, shy характер",
+        "interests": "Любимые занятия ребёнка — лепка"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST missing fields",
+      "method": "POST",
+      "path": "/",
+      "body": {"child_name": ""},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "Заполните все обязательные поля"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
